@@ -7,11 +7,18 @@
          });
          
          $stateProvider
-         .state('landing', {
-             url: '/',
-             controller: 'TurnCtrl as turn',
-             templateUrl: '/templates/landing.html'
-         });
+             .state('landing', {
+                 url: '/',
+                 controller: 'GameCtrl as game',
+                 templateUrl: '/templates/landing.html'
+        })
+         
+            .state('board', {
+                 url: '/board',
+                 templateUrl: '/templates/board.html'
+        });
+         
+          
      }
  
 

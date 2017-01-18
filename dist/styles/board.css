@@ -1,0 +1,36 @@
+.rack{
+    margin: 0 auto;
+}
+.arrows{
+    width:100px;
+    height: 25px;
+    margin: 0 10px;
+}
+
+.arrows:hover{
+    cursor: pointer;
+}
+
+.inserters{
+    text-align: center;
+    
+}
+
+.slot-rows{
+    text-align: center;
+    
+}
+.slots{
+    width: 100px;
+    height: 100px;
+}
+
+.empty{
+    width: 100%;
+    height: 100%;
+}
+
+.chip{
+    width: 100%;
+    height: 100%;
+}

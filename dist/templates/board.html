@@ -1,0 +1,15 @@
+
+<div class="info" ng-controller="GameCtrl as game">
+    <h3>Player {{game.player.turn_player}}'s Turn</h3>
+</div>
+
+<div class="play-area" ng-controller="GameCtrl as game">
+    <table class="rack">
+        <tr class="inserters">
+            <td class="arrow-container" ng-repeat="n in game.board.cols" ng-click="game.board.addChip($index,game.player.turn_player); game.player.switch()" ><img class="arrows" src="http://i.imgur.com/wwK7uIN.png"></td>
+        </tr>
+        <tr class="slot-rows" ng-repeat="n in game.board.rows">
+            <td class="slots" ng-repeat="n in game.board.cols"><img class="empty" src="http://i.imgur.com/O1lQF0g.png"</td>
+        </tr>
+    </table>
+</div>

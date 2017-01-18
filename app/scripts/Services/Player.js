@@ -1,21 +1,40 @@
-(function() {
-     function config($stateProvider, $locationProvider) {
-         $locationProvider
-         .html5Mode({
-             enabled: true,
-             requireBase: false
-         });
+ (function() {
+     function Player() {
+         var Player = {};
          
-         $stateProvider
-         .state('landing', {
-             url: '/',
-             controller: 'PlayerCtrl as player',
-             templateUrl: '/templates/landing.html'
-         });
+         Player.turn_player = null;
+         
+         Player.turns = 0;
+         
+         Player.pick_first = function(){
+             var order = Math.ceil(10*Math.random());
+             if (order < 5){
+                 Player.turn_player = 1;
+                 return 1;
+             }else{
+                 Player.turn_player = 2;
+                 return 2;
+             }
+         };
+         
+         Player.switch = function(){
+             if (Player.turn_player == 1){
+                 Player.turn_player = 2;
+             }else{
+                 Player.turn_player = 1;
+             }
+             Player.incrementTurn();
+         };
+         
+         
+         Player.incrementTurn = function(){
+             Player.turns++;
+         };
+         
+         return Player;
      }
  
-
      angular
-         .module('connect-four', ['ui.router'])
-         .config(config);
+         .module('connect-four')
+         .factory('Player', Player);
  })();
