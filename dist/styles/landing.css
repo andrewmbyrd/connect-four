@@ -8,4 +8,9 @@ h4{
     background-color: darkgray;
     width: 100px;
     margin: 0 auto;
+    
+}
+
+.selector:hover{
+    cursor: pointer;
 }

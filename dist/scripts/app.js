@@ -9,6 +9,7 @@
          $stateProvider
          .state('landing', {
              url: '/',
+             controller: 'TurnCtrl as turn',
              templateUrl: '/templates/landing.html'
          });
      }

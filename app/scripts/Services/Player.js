@@ -9,7 +9,7 @@
          $stateProvider
          .state('landing', {
              url: '/',
-             controller: 'TurnCtrl as turn',
+             controller: 'PlayerCtrl as player',
              templateUrl: '/templates/landing.html'
          });
      }
