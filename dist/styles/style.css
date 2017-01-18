@@ -1,0 +1,28 @@
+.icon{
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+}
+
+.title {
+    text-align: center;
+}
+
+.intro{
+    position: relative;
+    height: 55px;
+}
+
+.intro p{
+    display: inline;
+    position: relative;
+    bottom: 18px;
+}
+
+p.red{
+    padding-left: 10%;
+}
+p.black{
+    
+    padding-left: 50%;
+}

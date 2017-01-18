@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="connect-four">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Bloc Base Project</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <title>Connect Four</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
 </head>
 <body>
-    <h1>Welcome to Connect Four!</h1>
-    <div>
-        <p>Player 1 is red!</p><img src="../assets/images/red.png" alt="red checkers piece">
-        <p>Player 2 is black!</p><img src="../assets/images/black.PNG" alt="black checkers piece">
+    <h1 class="title">Welcome to Connect Four!</h1>
+    <div class="intro">
+        <p class="red">Player 1 is red!</p><img class="icon" src="http://i.imgur.com/wtJT330.png" alt="red checkers piece">
+    <p class="black">Player 2 is black!</p><img class="icon" src="http://i.imgur.com/NzuGMJn.png" alt="black checkers piece">
     </div>
+    
+    <ui-view></ui-view>
+    
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
     <script src="/scripts/app.js"></script>
 </body>
 </html>
