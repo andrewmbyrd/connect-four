@@ -130,7 +130,7 @@
              
              //want to have a automatic board reset after the timer goes off here, but didn't work
              if (Board.hasWinner){
-                 setTimeout(function(){Board.reset()}, 3000);
+                 //setTimeout(function(){Board.reset()}, 8000);
             
              }
              
