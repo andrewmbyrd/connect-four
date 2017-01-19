@@ -102,6 +102,7 @@
              
              //the formula used here finds the correct DOM element based on its row and column
              $(".slots")[((6-replaceIndex)*7-1) - (6-column)].innerHTML= "<img class='chip' src="+"'"+Board.chips[player]+"' <='' td=''>";
+             console.log($(".slots"));
              Board.checkVictory(column, replaceIndex);
              
          };
@@ -129,7 +130,7 @@
              
              //want to have a automatic board reset after the timer goes off here, but didn't work
              if (Board.hasWinner){
-                 //setTimeout(Board.reset(), 3000);
+                 setTimeout(function(){Board.reset()}, 3000);
             
              }
              
