@@ -2,9 +2,9 @@
      function Board() {
          var Board = {};
         
-         var chips=["http://i.imgur.com/O1lQF0g.png","http://i.imgur.com/wtJT330.png", "http://i.imgur.com/NzuGMJn.png"];
          
-         /*function notEmpty
+         
+         /*function empty
          @desc this function will help us find the index of the first non-empty slot in any column
          *returns boolean
          */
@@ -22,10 +22,13 @@
                      if(numArray[i] === numArray[i+1]){
                          consecutive+=1;
                          if (consecutive === 4){
+                             $(".slots").css("border-color", "yellow");
+                             $(".slots").css("border-width", "2px");
+                             $(".slots").css("border-style", "solid");
                              return true;
                          }
                      }else{
-                         consecutive = 0;
+                         consecutive = 1;
                      }
                       
                  }
@@ -37,7 +40,7 @@
          Board.cols=[1,2,3,4,5,6,7];
          Board.rows=[1,2,3,4,5,6];
          Board.hasWinner = false;
-         
+         Board.chips=["http://i.imgur.com/O1lQF0g.png","http://i.imgur.com/wtJT330.png", "http://i.imgur.com/NzuGMJn.png"];
          Board.matrix=[];
          
          //initialize the board with all empty slots
@@ -54,9 +57,12 @@
             }
              
             for(var i=0; i<42; i++){
-                $(".slots")[i].innerHTML= "<img class='chip' src="+"'"+chips[0]+"' <='' td=''>";
+                $(".slots")[i].innerHTML= "<img class='chip' src="+"'"+Board.chips[0]+"' <='' td=''>";
             }
-            Board.hasWinner = false; 
+            Board.hasWinner = false;
+             $(".slots").css("border-color", "white");
+                             $(".slots").css("border-width", "1px");
+                             $(".slots").css("border-style", "solid");
          };
          
          
@@ -65,8 +71,7 @@
              var replaceIndex = Board.matrix[column].findIndex(empty);
              Board.matrix[column][replaceIndex] = player;
              
-             $(".slots")[((6-replaceIndex)*7-1) - (6-column)].innerHTML= "<img class='chip' src="+"'"+chips[player]+"' <='' td=''>";
-             
+             $(".slots")[((6-replaceIndex)*7-1) - (6-column)].innerHTML= "<img class='chip' src="+"'"+Board.chips[player]+"' <='' td=''>";
              Board.checkVictory(column, replaceIndex);
              
          };
@@ -139,8 +144,7 @@
                  
              }
              
-             console.log("NW to SE: " + NWtoSE);
-             console.log("SW to NE: " + SWtoNE);
+            
              if(NWtoSE.length>=4){
                  win1 = checkConsec(NWtoSE);
              }
