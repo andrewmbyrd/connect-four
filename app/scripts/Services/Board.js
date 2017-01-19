@@ -50,6 +50,8 @@
          //initialize the game with no winner
          Board.hasWinner = false;
          
+         Board.hotColumn = null;
+         
          //an array of the images of a blank slot, a red piece, and a black piece
          Board.chips=["http://i.imgur.com/O1lQF0g.png","http://i.imgur.com/wtJT330.png", "http://i.imgur.com/NzuGMJn.png"];
          
@@ -93,8 +95,9 @@
          *no return value
          */
          Board.addChip = function(column, player){
-
+             Board.hotColumn = column;
              var replaceIndex = Board.matrix[column].findIndex(empty);
+             Board.hotRow = replaceIndex;
              Board.matrix[column][replaceIndex] = player;
              
              //the formula used here finds the correct DOM element based on its row and column
@@ -102,6 +105,13 @@
              Board.checkVictory(column, replaceIndex);
              
          };
+         
+         Board.undo = function(){
+             $(".slots")[((6-Board.hotRow)*7-1) - (6-Board.hotColumn)].innerHTML= "<img class='chip' src="+"'"+Board.chips[0]+"' <='' td=''>";
+             Board.matrix[Board.hotColumn][Board.hotRow] = 0;
+             Board.hotColumn = null;
+                 
+         }
          
          /*function checkVictory
          *@desc checks for consecutive matches on row, columns, and diagonals
@@ -166,25 +176,25 @@
              
              for(var i = 1; i<6; i++){
                  if(Board.matrix[column-i]){
-                     if(Board.matrix[column-i][row+i]){
+                     if(Board.matrix[column-i][row+i] !=undefined){
                         NWtoSE.unshift(Board.matrix[column-i][row+i]);
                      }
                  }
                  
                  if(Board.matrix[column+i]){
-                     if(Board.matrix[column+i][row-i]){
+                     if(Board.matrix[column+i][row-i] !=undefined){
                         NWtoSE.push(Board.matrix[column+i][row-i]);
                      }
                  }
                  
                  if(Board.matrix[column-i]){
-                    if(Board.matrix[column-i][row-i]){
+                    if(Board.matrix[column-i][row-i] !=undefined){
                         SWtoNE.unshift(Board.matrix[column-i][row-i]);
                     }
                  }
                  
                  if(Board.matrix[column+i]){
-                     if(Board.matrix[column+i][row+i]){
+                     if(Board.matrix[column+i][row+i] !=undefined){
                         SWtoNE.push(Board.matrix[column+i][row+i]);
                      }
                  }

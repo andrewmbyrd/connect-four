@@ -4,6 +4,7 @@
     <!-- <h3> Turns: {{game.player.turns}}</h3> -->
     <h2 class="winner" ng-if="game.board.hasWinner">Player {{game.player.off_turn}} Wins!!! Press reset please ---></h2>
     <p class="reset" ng-click="game.board.reset(); game.player.pick_first()">Reset</p>
+    <p class="undo" ng-if="game.board.hotColumn" ng-click="game.board.undo(); game.player.switch()">Undo</p>
     
 </div>
 

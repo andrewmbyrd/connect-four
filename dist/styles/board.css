@@ -60,6 +60,20 @@
     border: 1px solid black;
 }
 
+.undo{
+    text-align: center;
+    font-size: 1.4em;
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    width: 70px;
+    background-color: darkgray;
+    border: 1px solid black;
+}
 .reset:hover{
+    cursor: pointer;
+}
+
+.undo:hover{
     cursor: pointer;
 }
