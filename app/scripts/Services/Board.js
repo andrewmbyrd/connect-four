@@ -1,5 +1,6 @@
  (function() {
      function Board() {
+         //initialize the board as an empty object
          var Board = {};
         
          
@@ -12,6 +13,10 @@
              return element === 0;
          };
          
+         /*function checkConsec
+         *@desc takes in an array and checks that 4 consecutive values are the same, non-zero number
+         * returns boolean
+         */
          var checkConsec = function(numArray){
             var consecutive = 1;
              
@@ -37,10 +42,21 @@
              return false;
          };
          
+         //set public variables
+         //cols is for ng-repeat to create the table
          Board.cols=[1,2,3,4,5,6,7];
+         //rows is for ng-repeat to create the table
          Board.rows=[1,2,3,4,5,6];
+         //initialize the game with no winner
          Board.hasWinner = false;
+         
+         //an array of the images of a blank slot, a red piece, and a black piece
          Board.chips=["http://i.imgur.com/O1lQF0g.png","http://i.imgur.com/wtJT330.png", "http://i.imgur.com/NzuGMJn.png"];
+         
+         /*Board.matrix is an array of columns. each column is an array. The bottom of each column is index 0
+         *so the bottom-left of the Connect Four board is Board.matrix[0][0]
+         *the bottom right slot is Board.matrix[6][0]
+         etc.*/
          Board.matrix=[];
          
          //initialize the board with all empty slots
@@ -48,6 +64,12 @@
              Board.matrix.push([0,0,0,0,0,0,0]);
          }
          
+         /*function reset
+         *@desc will set the Board back to all zeroes, set all slots to empty images, 
+         * sets winner to false
+         *clears border from having won the game
+         *no return value
+         */
          Board.reset = function(){
             Board.matrix=[];
          
@@ -65,17 +87,26 @@
                              $(".slots").css("border-style", "solid");
          };
          
-         
+         /*function addChip
+         *@desc this function takes a column and the current player
+         *it will add a game piece for the current player at the lowest available slot in the given column
+         *no return value
+         */
          Board.addChip = function(column, player){
 
              var replaceIndex = Board.matrix[column].findIndex(empty);
              Board.matrix[column][replaceIndex] = player;
              
+             //the formula used here finds the correct DOM element based on its row and column
              $(".slots")[((6-replaceIndex)*7-1) - (6-column)].innerHTML= "<img class='chip' src="+"'"+Board.chips[player]+"' <='' td=''>";
              Board.checkVictory(column, replaceIndex);
              
          };
          
+         /*function checkVictory
+         *@desc checks for consecutive matches on row, columns, and diagonals
+         *return boolean
+         */
          Board.checkVictory = function(column, row){
             
              var colWin = Board.checkColumn(column);
@@ -86,6 +117,7 @@
                  Board.hasWinner = true;
              }
              
+             //want to have a automatic board reset after the timer goes off here, but didn't work
              if (Board.hasWinner){
                  //setTimeout(Board.reset(), 3000);
             
@@ -93,6 +125,10 @@
              
          };
          
+         /*function checkColumn
+         *@desc this uses the given column and checks for 4 consecutive pieces through checkConsec
+         *return boolean
+         */
          Board.checkColumn = function(column){
              var victoryColumn = Board.matrix[column];
              var win = checkConsec(victoryColumn);
@@ -100,6 +136,10 @@
              return win;
          };
          
+         /*function checkRow
+         *@desc creates a row by checking each column at the specified row height(0 would be bottom of game board) and checks for 4 consecutive pieces through checkConsec
+         *return boolean
+         */
          Board.checkRow = function(row){
              var victoryRow = [];
              
@@ -110,6 +150,13 @@
              return win;
          };
          
+         
+         /*functino checkDiag
+         *@desc creates two local variables which are arrays spanning from the top left to bottom right around the given slot
+         *and the bottom left to top right around the given slot. items are only added to these arrays if the item at that matrix location is truthy
+         *checks for a complete game through checkConsec
+         *return boolean
+         */
          Board.checkDiag = function(column, row){
              var NWtoSE = [Board.matrix[column][row]];
              var SWtoNE = [Board.matrix[column][row]];
