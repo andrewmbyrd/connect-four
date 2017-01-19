@@ -20,8 +20,10 @@
          Player.switch = function(){
              if (Player.turn_player == 1){
                  Player.turn_player = 2;
+                 Player.off_turn = 1;
              }else{
                  Player.turn_player = 1;
+                 Player.off_turn = 2;
              }
              Player.incrementTurn();
          };

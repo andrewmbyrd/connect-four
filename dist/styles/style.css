@@ -11,6 +11,8 @@
 .intro{
     position: relative;
     height: 55px;
+    border-bottom: 3px solid black;
+    margin-bottom: 20px;
 }
 
 .intro p{
