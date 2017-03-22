@@ -55,7 +55,7 @@
          //an array of the images of a blank slot, a red piece, and a black piece
          Board.chips=["http://i.imgur.com/O1lQF0g.png","http://i.imgur.com/wtJT330.png", "http://i.imgur.com/NzuGMJn.png"];
          
-         /*Board.matrix is an array of columns. each column is an array. The bottom of each column is index 0
+         /*Board.matrix is an array of rows. each row is an array. The bottom of each column is index 0
          *so the bottom-left of the Connect Four board is Board.matrix[0][0]
          *the bottom right slot is Board.matrix[6][0]
          etc.*/
@@ -129,10 +129,10 @@
              }
              
              //want to have a automatic board reset after the timer goes off here, but didn't work
-             if (Board.hasWinner){
-                 setTimeout(function(){Board.reset()}, 8000);
+            /* if (Board.hasWinner){
+                 setTimeout(function(){Board.reset()}, 50000);
             
-             }
+             }*/
              
          };
          
